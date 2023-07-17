@@ -1,0 +1,16 @@
+ACPYPE
+ambertools
+CHARMM
+cheminformatics
+computecanada
+cvmfs
+forcefields
+GROMOS
+IUPAC
+Jorgensen
+obabel
+openbabel
+outtop
+Trimethylpentane
+venv
+virtualenv
