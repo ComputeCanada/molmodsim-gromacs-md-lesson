@@ -8,9 +8,14 @@ forcefields
 GROMOS
 IUPAC
 Jorgensen
+NAMD
 obabel
 openbabel
+OPLS
+outfile
 outtop
+Parmchk
+Tleap
 Trimethylpentane
 venv
 virtualenv
