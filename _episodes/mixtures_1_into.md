@@ -250,3 +250,6 @@ structures/        venv_acpype/
 [openbabel]: http://openbabel.org/
 [phenol]:  https://en.wikipedia.org/wiki/Phenol
 [SMILES]: https://en.wikipedia.org/wiki/SMILES
+
+
+{% include links.md %}

@@ -21,7 +21,8 @@ title: "Running Molecular Dynamics with GROMACS on Alliance systems"
 
 episode_order:
     - '01-introduction'
-    - 'break_1'
+    - 'topologies'
+    - 'break'
     - 'mixtures_1_into'
     - 'mixtures_2_generate_topologies'
 
