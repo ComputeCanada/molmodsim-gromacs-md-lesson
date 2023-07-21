@@ -18,7 +18,7 @@ A standalone topology file, usually called `topol.top`,  often looks something l
 ~~~
 ;
 ;       File 'topol.top' was generated
-;       By user: stuekero (3004178)
+;       By user: user (1000)
 ;       On host: login1.mun.ace-net.ca
 ;       At date: Wed Jul 19 17:02:44 2023
 ;
@@ -40,9 +40,6 @@ A standalone topology file, usually called `topol.top`,  often looks something l
 
 ; Include chain topologies
 #include "topol_Protein_chain_A.itp"
-#include "topol_Protein_chain_A2.itp"
-#include "topol_Protein_chain_A3.itp"
-#include "topol_Protein_chain_A4.itp"
 
 ; Include water topology
 #include "oplsaa.ff/tip3p.itp"
@@ -63,33 +60,40 @@ Protein
 
 [ molecules ]
 ; Compound        #mols
-Protein_chain_A     1
-Protein_chain_A2     1
-Protein_chain_A3     1
-Protein_chain_A4     1
+Protein_chain_A     4
 ~~~
 
+### Comment lines
+
 Lines starting with a semicolon `;` are treated as comments.
-The file usually starts with a comment section that contains how the file was initially generated, 
-e.g. when, by whom, which program and version was used, etc.
-GROMACS tools, like `pdb2gmx`, almost always record the exact command that was used.
-Other 3rd-party tools may record less information.
+
+The file usually starts with a comment section that contains how the file was initially generated (e.g. when, by whom, which program and version was used, etc.).
+GROMACS tools, like `pdb2gmx`, almost always record the exact command that was used, while Other 3rd-party tools may record less information.
+
+Often additional comments can be found that give information about the (multi-column-)data in the following lines.
+
+### Section Names
 
 Next we see several section headers `[ section_name ]` which each are followed by one or more lines of data.
+The main-sections need to appear in a fixed order and can then be followed by certain other sections.
 
-We also notice several pre-processor directives:
+### Preprocessor Directives
 
-* `#include "filename.itp"`: 
-    * This directive looks for an additional file, in this example called `filename.itp` 
-      and will internally paste its content of the file replacing this directive.  
-    * Any pre-processor directives inside the included file are processed as well.
-    * Included files are also called "include-topology" and by convention have the `.itp` file extension
+We also notice several pre-processor directives, that `grompp` uses to assemble the final
+topology.  For that [`grompp`][grompp] has a built-in preprocessor that implements a subset of
+the `cpp` processor that programmers most C and C++ programmers are familiar with.
 
-* `#ifdef SOME_WORD` ... `#endif`:
-    * This will include the lines in between these statements only if `SOME_WORD` has been defined.
-    * Defining a word can be done either by adding a line  `define = -DSOME_WORD` to the `.mdp` file
-      or by adding a `#define SOME_WORD` statement into a processed `.top` or `.itp` file.
+#### `#include "filename.itp"`
 
+* This directive looks for an additional file, in this example called `filename.itp` 
+  and will internally paste its content of the file replacing this directive.  
+* Any pre-processor directives inside the included file are processed as well.
+* Included files are also called "include-topology" and by convention have the `.itp` file extension
+
+#### `#ifdef SOME_WORD` ... `#endif`
+* This will include the lines in between these statements only if `SOME_WORD` has been defined.
+* Defining a word can be done either by adding a line  `define = -DSOME_WORD` to the `.mdp` file
+  or by adding a `#define SOME_WORD` statement into a processed `.top` or `.itp` file.
 
 
 
@@ -147,5 +151,7 @@ https://virtualchemistry.org/ff.php
  MOL              1     
 ~~~
 
+
+[grompp]: https://manual.gromacs.org/current/onlinehelp/gmx-grompp.html#gmx-grompp
 
 {% include links.md %}
